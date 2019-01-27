@@ -62,3 +62,6 @@ typings/
 
 # firebase project config
 .firebaserc
+
+# webpack bundle
+bundle.js
