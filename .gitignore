@@ -60,8 +60,10 @@ typings/
 # next.js build output
 .next
 
-# firebase project config
+# firebase project config and hosting caches
 .firebaserc
+.firebase
 
 # webpack bundle
-bundle.js
+public
+!public/index.html
