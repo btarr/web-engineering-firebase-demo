@@ -67,3 +67,6 @@ typings/
 # webpack bundle
 public
 !public/index.html
+
+# application config file
+src/config.js
