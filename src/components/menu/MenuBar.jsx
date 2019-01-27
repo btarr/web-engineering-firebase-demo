@@ -16,7 +16,7 @@ function renderWelcome() {
         className="quote-me-title"
         inverted={true}
       >
-        Quote me on it
+        Quote me on this
       </Header>
       <Icon
         name="quote right"

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Header } from 'semantic-ui-react';
 import OauthButton from './OauthButton';
 import { getCurrentUser } from '../../utilities/googleOauthUtils';
+import QuoteInput from './QuoteInput';
+import '../../style/submitQuote/submitquotepanel.css';
 
 export default class SubmitQuotePanel extends PureComponent {
   constructor() {
@@ -19,14 +21,16 @@ export default class SubmitQuotePanel extends PureComponent {
     });
   }
 
-  getCurrentUserName() {
+  getUserDisplayName() {
     const { currentUser } = this.state;
-    return currentUser && currentUser.email && currentUser.displayName;
+    return currentUser && currentUser.displayName || currentUser.email;
   }
 
-  renderQuoteSection() {
+  renderQuoteInput() {
     return (
-      <Header as="h4"> Signed in as {this.getCurrentUserName()} </Header>
+      <QuoteInput
+        displayName={this.getUserDisplayName()}
+      />
     )
   }
 
@@ -34,7 +38,7 @@ export default class SubmitQuotePanel extends PureComponent {
     return (
       <>
         <Header as="h1"> Submit a Quote </Header>
-        {!!this.state.currentUser && this.renderQuoteSection()}
+        {!!this.state.currentUser && this.renderQuoteInput()}
         <OauthButton
           oauthProvider={this.props.oauthProvider}
           currentUser={this.state.currentUser}
