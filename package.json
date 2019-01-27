@@ -33,8 +33,11 @@
   },
   "dependencies": {
     "add": "^2.0.6",
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-immutable-proptypes": "^2.1.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0"
   }
