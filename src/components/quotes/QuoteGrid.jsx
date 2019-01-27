@@ -8,7 +8,8 @@ import { fetchQuotes, subscribeToQuotesChanges } from '../../utilities/quoteData
 function quoteToCardItem(quote) {
   return {
     header: `"${quote.get('text')}"`,
-    description: `- ${quote.get('user')}`,
+    meta: `- ${quote.get('user')}`,
+    description: `${quote.get('date')}`,
     color: 'teal',
   }
 }
