@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Card } from 'semantic-ui-react'
+import { Card, Icon, Grid} from 'semantic-ui-react'
+import { fromJS } from 'immutable';
+import { fetchQuotes, subscribeToQuotesChanges } from '../../utilities/quoteDatabaseUtils';
 
 function quoteToCardItem(quote) {
   return {
@@ -11,23 +13,55 @@ function quoteToCardItem(quote) {
   }
 }
 
-export default function QuoteGrid({
-  quotes,
-}) {
-  return (
-    <Card.Group
-      className="quote-grid"
-      items={quotes.map(quoteToCardItem).toJS()}
-    />
-  )
-};
+export default class QuoteGrid extends PureComponent{
+  constructor() {
+    super()
+    this.handleSetQuotesFromFetch = this.handleSetQuotesFromFetch.bind(this);
+    this.state = {
+      quotes: fromJS([]),
+      fetching: true,
+    }
+  }
 
-QuoteGrid.propTypes = {
-  quotes: ImmutablePropTypes.listOf(
-    ImmutablePropTypes.contains({
-      user: PropTypes.string,
-      text: PropTypes.string,
-    })
-  )
-}
+  handleSetQuotesFromFetch(quotesSnapshot) {
+    const quotesValue = quotesSnapshot.val()
+    this.setState({
+      quotes: quotesValue && fromJS(quotesValue).toList(),
+      fetching: false,
+    });
+  };
+
+  componentWillMount() {
+    fetchQuotes().then(this.handleSetQuotesFromFetch);
+    subscribeToQuotesChanges(this.handleSetQuotesFromFetch)
+  }
+
+  render() {
+    const { quotes, fetching } = this.state;
+    if (fetching) {
+      return (
+        <Grid
+          columns={1}
+          centered={true}
+          padded={true}
+        >
+          <Grid.Row>
+            <Icon
+              loading={true}
+              size="big"
+              name="spinner"
+              color="grey"
+            />
+          </Grid.Row>
+        </Grid>
+      )
+    }
+    return (
+      <Card.Group
+        className="quote-grid"
+        items={quotes && quotes.map(quoteToCardItem).toJS()}
+      />
+    )
+  }
+};
 

@@ -7,17 +7,6 @@ import { Grid } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import './style/app.css'
 
-const testQuotes = fromJS([
-  {
-    user: "Tom Blue",
-    text: "I'm blue",
-  },
-  {
-    user: "Thom Yorke",
-    text: "My head is a radio",
-  }
-])
-
 export default function App({
   oauthProvider,
 }) {
@@ -30,7 +19,7 @@ export default function App({
         >
           <Grid.Row>
             <Grid.Column width={10}>
-              <QuoteGrid quotes={testQuotes} />
+              <QuoteGrid />
             </Grid.Column>
             <Grid.Column width={4}>
               <SubmitQuotePanel oauthProvider={oauthProvider} />
