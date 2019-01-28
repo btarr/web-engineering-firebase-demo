@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Button, Input, Form, Icon, Header } from 'semantic-ui-react'
 import { createQuote } from '../../utilities/quoteDatabaseUtils';
 
+const MAX_QUOTE_LENGTH = 280;
+
 export default class QuoteInput extends PureComponent {
   constructor() {
     super();
@@ -28,6 +30,9 @@ export default class QuoteInput extends PureComponent {
   }
 
   handleUpdateQuoteText(_, { value: quoteText }) {
+    if (quoteText.length > MAX_QUOTE_LENGTH) {
+      quoteText = quoteText.substring(0, MAX_QUOTE_LENGTH)
+    }
     this.setState({ quoteText });
   }
 
