@@ -67,6 +67,10 @@ typings/
 # webpack bundle
 public
 !public/index.html
+!public/favicon.png
 
 # application config file
 src/config.js
+
+# Mac
+.DS_Store

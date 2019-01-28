@@ -13,6 +13,12 @@ export function signOut(provider) {
   });
 }
 
+export function addLoginListener(callback) {
+  firebase.auth().onAuthStateChanged(function (user) {
+    callback(user || null)
+  });
+}
+
 export function getCurrentUser() {
   return firebase.auth().currentUser;
 }

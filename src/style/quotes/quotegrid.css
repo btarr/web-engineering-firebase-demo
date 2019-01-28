@@ -4,3 +4,7 @@
     margin-right: auto;
     width: 40%;
 }
+
+.show-more-button {
+    max-width: 600px;
+}

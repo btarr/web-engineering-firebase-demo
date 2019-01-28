@@ -18,8 +18,7 @@ export default class OauthButton extends PureComponent {
   }
 
   handleSignIn() {
-    signInWithPopup(this.props.oauthProvider).then((currentUser) => {
-      this.props.handleChangeUser(currentUser);
+    signInWithPopup(this.props.oauthProvider).then(() => {
       this.setState({
         error: false,
       });
@@ -28,7 +27,6 @@ export default class OauthButton extends PureComponent {
 
   handleSignOut() {
     signOut(this.props.oauthProvider).then(() => {
-      this.props.handleChangeUser(null);
       this.setState({
         error: false,
       });
@@ -62,7 +60,7 @@ export default class OauthButton extends PureComponent {
     return (
       <Popup
         trigger={signedIn ? this.renderSignOutButton() : this.renderSignInButton()}
-        content={`Sign${signedIn? 'out' : 'in'} failed`}
+        content={`Sign ${signedIn? 'Out' : 'In'} failed`}
         open={this.state.error}
         position="bottom left"
       />
@@ -73,5 +71,4 @@ export default class OauthButton extends PureComponent {
 OauthButton.propTypes = {
   oauthProvider: PropTypes.object.isRequired,
   currentUser: PropTypes.object,
-  handleChangeUser: PropTypes.func.isRequired,
 }
