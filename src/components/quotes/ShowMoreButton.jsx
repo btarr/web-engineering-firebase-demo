@@ -7,7 +7,7 @@ export default function ShowMoreButton({
   onClick,
 }) {
   return (
-    <div className="show-more-button">
+    <>
       <Grid
         columns={1}
         centered={true}
@@ -22,7 +22,7 @@ export default function ShowMoreButton({
           </Button>
         </Grid.Row>
       </Grid>
-    </div>
+    </>
   )
 }
 
