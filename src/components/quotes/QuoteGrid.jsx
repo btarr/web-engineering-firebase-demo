@@ -20,10 +20,10 @@ function quoteToCardItem(quote) {
 function sortQuotesByDate(quoteA, quoteB) {
   const dateA = moment(quoteA.get('date'), 'MMMM Do YYYY');
   const dateB = moment(quoteB.get('date'), 'MMMM Do YYYY');
-  if (dateA < dateB) {
+  if (dateA > dateB) {
     return -1;
   }
-  if (dateA > dateB) {
+  if (dateA < dateB) {
     return 1;
   }
   return 0;
