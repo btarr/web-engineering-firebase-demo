@@ -8,9 +8,7 @@ export function signInWithPopup(provider) {
 }
 
 export function signOut(provider) {
-  return firebase.auth().signOut().then(function () {
-    // Sign-out successful.
-  });
+  return firebase.auth().signOut();
 }
 
 export function addLoginListener(callback) {

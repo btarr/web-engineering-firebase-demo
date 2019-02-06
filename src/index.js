@@ -5,7 +5,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { firebaseConfig } from './config';
 import 'semantic-ui-css/semantic.min.css'
-import { fetchQuotes } from './utilities/quoteDatabaseUtils';
 
 // configure firebase
 var config = firebaseConfig;
